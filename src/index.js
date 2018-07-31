@@ -1,3 +1,4 @@
 module.exports = (app) => {
-    app.use('/', require('./controller/main/index'))
+    app.use('/', require('./controllers/main/index'))
+    app.use('/users', require('./controllers/users/index'))
 }

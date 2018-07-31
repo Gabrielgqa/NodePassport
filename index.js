@@ -13,13 +13,15 @@ const app = express()
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
+app.use(methodOverride('_method'))
 app.use(passport.initialize())
 app.set('view engine', 'pug')
-app.set('views', path.join(__dirname, 'src/view'))
+app.set('views', path.join(__dirname, 'src/views'))
 
 require('./src/index')(app)
 
 mongoose.connect('mongodb://localhost:27017/auth')
+mongoose.Promise = global.Promise
 app.listen(9000, () =>{
     console.log('Express has been started!')
 })
